@@ -75,5 +75,6 @@ module.exports = {
         environments: ["production", "development"],
       },
     },
+    `gatsby-plugin-netlify-cms`,
   ],
 }
