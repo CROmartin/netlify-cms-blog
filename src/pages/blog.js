@@ -1,25 +1,44 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
+import styled from "styled-components"
 
+const BlogList = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  article {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
+  h1 {
+    text-align: center;
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+`
 export default function Blog({ data }) {
   const { posts } = data.blog
 
   return (
-    <div>
-      <h1>My blog posts</h1>
+    <BlogList>
+      <div>
+        <h1>My blog posts</h1>
 
-      {posts.map(post => (
-        <article key={post.id}>
-          <Link to={post.fields.slug}>
-            <h2>{post.frontmatter.title}</h2>
-          </Link>
-          <small>
-            {post.frontmatter.author}, {post.frontmatter.date}
-          </small>
-          <p>{post.excerpt}</p>
-        </article>
-      ))}
-    </div>
+        {posts.map(post => (
+          <article key={post.id}>
+            <Link to={post.fields.slug}>
+              <h2>{post.frontmatter.title}</h2>
+            </Link>
+            <small>
+              {post.frontmatter.author}, {post.frontmatter.date}
+            </small>
+            <p>{post.excerpt}</p>
+          </article>
+        ))}
+      </div>
+    </BlogList>
   )
 }
 
