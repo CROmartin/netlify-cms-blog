@@ -1,7 +1,8 @@
 ---
 title: Awesome Blog Post Title
 author: Martin
-date: 2020-07-15
+date: 2021-11-07T23:00:00.000Z
+description: desc
 ---
 
 ## Introduction to my blog post
