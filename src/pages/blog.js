@@ -1,7 +1,9 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 import styled from "styled-components"
-import { StaticImage } from "gatsby-plugin-image"
+import { StaticImage, GatsbyImage } from "gatsby-plugin-image"
+import { useEffect } from "react"
+import { getImage } from "gatsby-plugin-image"
 
 const BlogList = styled.div`
   display: flex;
@@ -22,6 +24,10 @@ const BlogList = styled.div`
 export default function Blog({ data }) {
   const { posts } = data.blog
 
+  useEffect(() => {
+    posts.map(post => console.log(post.frontmatter.thumbnail))
+  }, [])
+
   return (
     <BlogList>
       <div>
@@ -32,14 +38,11 @@ export default function Blog({ data }) {
             <Link to={post.fields.slug}>
               <h2>{post.frontmatter.title}</h2>
             </Link>
-            <StaticImage
-              src={post.frontmatter.thumbnail}
-              width={588}
-              quality={95}
-              formats={["AUTO", "WEBP", "AVIF", "PNG"]}
-              alt="Thumbnail"
-              placeholder="blurred"
+            <GatsbyImage
+              image={getImage(post.frontmatter.thumbnail)}
+              alt="thumbnail"
             />
+            {/* <div> Nesto {toString(post.frontmatter.thumbnail)}</div> */}
             <small>
               {post.frontmatter.author}, {post.frontmatter.date}
             </small>
@@ -62,6 +65,11 @@ export const pageQuery = graphql`
           date(fromNow: true)
           title
           author
+          thumbnail {
+            childImageSharp {
+              gatsbyImageData(width: 400)
+            }
+          }
         }
         excerpt
         id
