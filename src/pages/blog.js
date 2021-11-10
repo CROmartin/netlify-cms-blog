@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 import styled from "styled-components"
+import { StaticImage } from "gatsby-plugin-image"
 
 const BlogList = styled.div`
   display: flex;
@@ -31,6 +32,14 @@ export default function Blog({ data }) {
             <Link to={post.fields.slug}>
               <h2>{post.frontmatter.title}</h2>
             </Link>
+            <StaticImage
+              src={post.frontmatter.thumbnail}
+              width={588}
+              quality={95}
+              formats={["AUTO", "WEBP", "AVIF", "PNG"]}
+              alt="Thumbnail"
+              placeholder="blurred"
+            />
             <small>
               {post.frontmatter.author}, {post.frontmatter.date}
             </small>
