@@ -1,5 +1,6 @@
 ---
-title: Awesome Blog Post Title
+title: Awesome Blog Post Title - title changed
+thumbnail: salty_egg.jpg
 author: Martin
 date: 2021-11-07T23:00:00.000Z
 description: desc
